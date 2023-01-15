@@ -1,0 +1,17 @@
+.myCommentsContainer {
+    max-width: 1200px;
+    margin:auto;
+    margin-top: 20px;
+ 
+}
+
+
+.myCommentDiv {
+   
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.myCommentDiv .commentContent {
+    
+    width: 70%;
+}

@@ -1,0 +1,43 @@
+.postListContainer {
+    max-width: 1200px;
+    margin:auto;
+    margin-top: 20vh;
+  
+}
+
+.leaflet-container-postlist {
+    width: 286px;
+    height: 166px;
+
+  }
+
+.postContainer {
+    width:50%;
+    min-width: 400px;
+    margin: auto;
+    margin-bottom: 10%;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.cardTitle {
+  text-overflow: ellipsis;
+}
+
+.cardDate {
+  font-size: 14px;
+  color: rgba(112, 112, 112, 0.5);
+}
+
+.postCard:hover {
+  border: solid rgba(0, 0, 0, 0.3);
+  cursor: grab;
+
+}
+
+.postListbtn {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+  }
+

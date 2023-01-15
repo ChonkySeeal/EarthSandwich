@@ -1,0 +1,82 @@
+.container {
+    margin-top: 20vh;
+    max-width: 800px;
+    min-width: 350px;
+
+}
+
+.leaflet-container-singlepost {
+    width: 300px;
+    height: 300px;
+}
+
+.titleDiv {
+    
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+   
+}
+
+.titleDiv h3 {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.titleDiv p {
+    font-size: 14px;
+}
+
+.editButton:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.userInfoDiv {
+    color: rgba(112, 112, 112, 0.5);
+}
+
+.imgDiv {
+    position: relative;
+    text-align: center;
+}
+
+.imgDiv img {
+    
+    width: 100%;
+}
+
+.imgOverlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #7c837e;
+  }
+
+  .imgOverlayText {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .imgOverlay:hover,  .imgOverlay:active {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+  
+
+.contentDiv {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}

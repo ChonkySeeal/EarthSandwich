@@ -1,0 +1,15 @@
+.accountDiv {
+    
+    min-width: 250px;
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 80px;
+
+}
+
+.accountNav {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    max-width: 600px;
+    margin: auto;
+}

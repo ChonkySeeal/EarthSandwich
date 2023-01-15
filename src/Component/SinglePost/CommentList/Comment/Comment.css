@@ -1,0 +1,21 @@
+.commentDiv {
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.commentWriter {
+    font-weight:600;
+    font-size: 16px;
+}
+
+.commentEditButtonDiv {
+    font-size: 14px;
+}
+
+.commentEditButton:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.commentDate {
+    color: rgba(112, 112, 112, 0.5);
+}

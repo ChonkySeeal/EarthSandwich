@@ -1,0 +1,36 @@
+.searchListContainer {
+    max-width: 1200px;
+    margin:auto;
+    margin-top: 20vh;
+ 
+}
+
+.searchListContainer h2 {
+    font-family: 'Open Sans', sans-serif;
+    
+}
+
+.searchContainer {
+    width:50%;
+    max-height: 150px;
+    min-width: 400px;
+    
+}
+
+.img-thumbnail {
+    width: 50px;
+    height: 50px;
+}
+
+
+
+.searchUserInfo h3 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.searchUserInfo p {
+    font-size: 12px;
+    color: rgba(112, 112, 112, 0.5);
+}

@@ -1,0 +1,20 @@
+
+.postform {
+    width: 50vw;
+    min-width: 350px;
+    max-width: 800px;
+    margin: auto;
+    margin-top: 20vh;
+    padding: 3%;
+    border: lightgray solid 3px;
+    border-radius: 2px;
+  }
+
+  .postformbtn {
+    font-weight: bold;
+  }
+
+  .postform .img-thumbnail {
+   width: 200px;
+   height: 200px;
+  }

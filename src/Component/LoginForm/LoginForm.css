@@ -1,0 +1,10 @@
+.loginform {
+    max-width: 600px;
+    min-width: 350px;
+    margin: auto;
+    margin-top: 20vh;
+    padding: 5%;
+    border: lightgray solid 3px;
+    border-radius: 2px;
+  
+  }

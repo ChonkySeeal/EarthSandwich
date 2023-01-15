@@ -1,0 +1,21 @@
+.myAccountInfoDiv {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 5vh;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+}
+
+.myAccountEmailDiv {
+
+    background-color: rgba(247, 247, 247, 0.822);
+}
+
+.showPasswordFormBtn {
+    width: 100%;
+}
+
+.deleteAccountBtn {
+    position:relative;
+    left:55%;
+}

@@ -1,0 +1,18 @@
+.leaflet-container-postform {
+    width: 20vw;
+    height: 25vh;
+    max-height: 250px;
+    min-width: 200px;
+  }
+  
+  .leaflet-div {
+    margin: auto;
+    width: 50vw;
+    max-width: 800px;
+    min-width: 200px;
+    
+  }
+  
+  .leaflet-popup-content {
+    width: 10vw;
+  }
