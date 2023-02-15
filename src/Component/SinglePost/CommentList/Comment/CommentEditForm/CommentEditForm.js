@@ -28,12 +28,10 @@ function CommentEditForm({ postId, content, commentId }) {
     e.preventDefault();
     axios.defaults.withCredentials = true;
     const formData = new FormData(document.querySelector("#commentEditForm"));
-    for (const value of formData.values()) {
-      console.log(value);
-    }
+
     axios
       .put(
-        `http://localhost:8080/member/post/${postId}/${commentId}`,
+        `${process.env.REACT_APP_API_URL}:8080/member/post/${postId}/${commentId}`,
         formData,
         {}
       )
@@ -45,8 +43,7 @@ function CommentEditForm({ postId, content, commentId }) {
           alert("Unauthorized user attempt");
           navigate("/");
         } else {
-          alert("fail to edit comment");
-          console.log(r);
+          alert(r.response.data.message);
         }
       });
   };

@@ -12,7 +12,7 @@ function NavBar({ login, setLogin }) {
     axios.defaults.withCredentials = true;
 
     axios
-      .get("http://localhost:8080/member/logout")
+      .get(`${process.env.REACT_APP_API_URL}:8080/member/logout`)
       .then((r) => {
         alert("logout success");
         setLogin(false);
@@ -41,7 +41,7 @@ function NavBar({ login, setLogin }) {
       </Nav>
     ) : (
       <Nav>
-        <Nav.Link href="/user/register">Sign up</Nav.Link>
+        <Nav.Link href="/user/term">Sign up</Nav.Link>
         <Nav.Link href="/user/login">Sign in</Nav.Link>
       </Nav>
     );

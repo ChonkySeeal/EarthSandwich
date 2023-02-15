@@ -8,12 +8,12 @@ function CommentList({ postId }) {
   const [comments, setComments] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/board/post/${postId}/comment`)
+      .get(`${process.env.REACT_APP_API_URL}:8080/board/post/${postId}/comment`)
       .then((response) => {
         setComments(response.data);
       })
       .catch((e) => {
-        console.log(e);
+        alert(e.response.data.message);
       });
   }, [postId]);
 

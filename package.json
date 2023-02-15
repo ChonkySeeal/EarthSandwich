@@ -1,9 +1,7 @@
 {
   "name": "earthsandwich",
   "version": "0.1.0",
-
-  "private": true,
-  
+  "homepage": "https://earthsandwich.lol/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -11,7 +9,6 @@
     "axios": "^1.1.3",
     "bootstrap": "^5.2.2",
     "browser-image-compression": "^2.0.0",
-    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-bootstrap": "^2.6.0",
     "react-dom": "^18.2.0",

@@ -15,26 +15,26 @@ function EditPost() {
     const value = e.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
   };
-  const getposts = () => {
-    axios
-      .get(`http://localhost:8080/board/post/${postId}`)
-      .then((response) => {
-        setInputs((values) => ({ ...values, title: response.data.title }));
-        setInputs((values) => ({ ...values, content: response.data.content }));
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
 
   useEffect(() => {
     if (postId) {
-      getposts();
+      axios
+        .get(`${process.env.REACT_APP_API_URL}:8080/board/post/${postId}`)
+        .then((response) => {
+          setInputs((values) => ({ ...values, title: response.data.title }));
+          setInputs((values) => ({
+            ...values,
+            content: response.data.content,
+          }));
+        })
+        .catch((e) => {
+          alert(e.response.data.message);
+        });
     } else {
       alert("invalid access");
       navigate("/");
     }
-  }, []);
+  }, [postId, navigate]);
 
   //textarea auto height logic
 
@@ -54,7 +54,10 @@ function EditPost() {
     const formData = new FormData(document.querySelector("#submitForm"));
 
     axios
-      .put(`http://localhost:8080/member/post/${postId}`, formData)
+      .put(
+        `${process.env.REACT_APP_API_URL}:8080/member/post/${postId}`,
+        formData
+      )
       .then(() => {
         alert("Edit success");
         navigate(`/board/post/${postId}`);

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import CommentList from "./CommentList/CommentList";
-import moment from "moment";
+import showRelativeDate from "../../Module/RelativeDate";
 import { useNavigate } from "react-router-dom";
 
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
@@ -26,16 +26,16 @@ function SinglePost() {
     if (window.confirm("delete post?")) {
       axios.defaults.withCredentials = true;
       axios
-        .delete(`http://localhost:8080/member/post/${postId}`)
+        .delete(`${process.env.REACT_APP_API_URL}:8080/member/post/${postId}`)
         .then(() => {
-          navigate("/board/post/");
+          navigate("/");
         })
         .catch((r) => {
           if (r.response.request.status === 401) {
             alert("Unauthorized user attempt");
             navigate("/");
           } else {
-            console.log(r);
+            alert(r.response.data.message);
           }
         });
     }
@@ -44,7 +44,7 @@ function SinglePost() {
   //fetching single post
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/board/post/${postId}`)
+      .get(`${process.env.REACT_APP_API_URL}:8080/board/post/${postId}`)
       .then((response) => {
         setPost(response.data);
       })
@@ -92,7 +92,7 @@ function SinglePost() {
             by <Link to={`/user/${post.writer}/0`}>{`u/${post.writer}`}</Link>{" "}
           </p>
 
-          <p>{`submitted ${moment(post.date, "YYYYMMDD").fromNow()}`}</p>
+          <p>{`submitted ${showRelativeDate(post.date)}`}</p>
         </div>
       </div>
 
@@ -143,10 +143,7 @@ function SinglePost() {
                   to={`/user/${post.linkedPost.writer}/0`}
                 >{`u/${post.linkedPost.writer}`}</Link>{" "}
               </p>
-              <p>{`submitted ${moment(
-                post.linkedPost.date,
-                "YYYYMMDD"
-              ).fromNow()}`}</p>
+              <p>{`submitted ${showRelativeDate(post.linkedPost.date)}`}</p>
             </div>
           </div>
 

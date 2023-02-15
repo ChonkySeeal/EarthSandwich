@@ -18,7 +18,7 @@ function LoginForm({ setLogin }) {
     axios.defaults.withCredentials = true;
 
     axios
-      .post("http://localhost:8080/user/auth", {
+      .post(`${process.env.REACT_APP_API_URL}:8080/user/auth`, {
         email: inputs.email,
         password: inputs.password,
       })
@@ -29,7 +29,9 @@ function LoginForm({ setLogin }) {
         }
       })
       .catch((r) => {
-        alert(r.response.data.message);
+        if (r.response.data.message == null)
+          alert("something went wrong contact admin");
+        else alert(r.response.data.message);
       });
   };
 

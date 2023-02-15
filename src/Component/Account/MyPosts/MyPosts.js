@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Pagination, Image } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import moment from "moment";
+import showRelativeDate from "../../../Module/RelativeDate";
 
 function MyPosts({ writer }) {
   const navigate = useNavigate();
@@ -15,13 +15,15 @@ function MyPosts({ writer }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/board/postlist/user/${writer}/${pageNumber}`)
+      .get(
+        `${process.env.REACT_APP_API_URL}:8080/board/postlist/user/${writer}/${pageNumber}`
+      )
       .then((response) => {
         setPostlists(response.data.postLists);
         setTotalPageNumber(response.data.totalPageNumber);
       })
       .catch((e) => {
-        console.log(e);
+        alert(e.response.data.message);
       });
   }, [pageNumber, writer]);
 
@@ -42,10 +44,7 @@ function MyPosts({ writer }) {
                 <Image thumbnail src={post.picture} />
                 <div className="searchUserInfo mx-2">
                   <h3>{post.title}</h3>
-                  <p>{`submitted ${moment(
-                    post.date,
-                    "YYYYMMDD"
-                  ).fromNow()}`}</p>
+                  <p>{`submitted ${showRelativeDate(post.date)}`}</p>
                 </div>
               </div>
             );

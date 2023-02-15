@@ -11,6 +11,10 @@ import SinglePost from "./Component/SinglePost/SinglePost";
 import EditPost from "./Component/EditPost/EditPost";
 import SearchList from "./Component/SearchList/SearchList";
 import Account from "./Component/Account/Account";
+import UseOfTerm from "./Component/UseOfTerm/UseOfTerm";
+import EmailVerification from "./Component/EmailVerification/EmailVerification";
+import EmailConfirm from "./Component/EmailConfirm/EmailConfirm";
+import PasswordReset from "./Component/PasswordReset/PasswordReset";
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -24,10 +28,18 @@ function App() {
             <Route path="/" element={<PostList />} />
             <Route path="/:pageNumber" element={<PostList />} />
             <Route path="/user/register" element={<RegisterForm />} />
+            <Route path="/user/term" element={<UseOfTerm />} />
             <Route path="/user/account/*" element={<Account />} />
+
             <Route
               path="/user/login"
               element={<LoginForm setLogin={setLogin} />}
+            />
+            <Route path="/user/email" element={<EmailVerification />} />
+            <Route path="/user/confirmEmail" element={<EmailConfirm />} />
+            <Route
+              path="/user/reset"
+              element={<PasswordReset setLogin={setLogin} />}
             />
             <Route path="/user/:writer/:pageNumber" element={<SearchList />} />
             <Route path="/member/post" element={<PostForm />} />

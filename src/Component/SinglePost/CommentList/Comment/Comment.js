@@ -1,6 +1,6 @@
 import "./Comment.css";
 import { useState } from "react";
-import moment from "moment";
+import showRelativeDate from "../../../../Module/RelativeDate";
 import axios from "axios";
 import CommentEditForm from "./CommentEditForm/CommentEditForm";
 import { Link } from "react-router-dom";
@@ -12,7 +12,9 @@ function Comment({ comment, postId }) {
     if (window.confirm("delete comment?")) {
       axios.defaults.withCredentials = true;
       axios
-        .delete(`http://localhost:8080/member/post/${postId}/${commentId}`)
+        .delete(
+          `${process.env.REACT_APP_API_URL}:8080/member/post/${postId}/${commentId}`
+        )
         .then(() => {
           window.location.reload();
         })
@@ -20,7 +22,7 @@ function Comment({ comment, postId }) {
           if (r.response.request.status === 401) {
             alert("Unauthorized user attempt");
           } else {
-            console.log(r);
+            alert(r.response.data.message);
           }
         });
     }
@@ -45,14 +47,10 @@ function Comment({ comment, postId }) {
         >
           Delete
         </p>
-        <p className="commentDate">
-          {moment(comment.date, "YYYYMMDD").fromNow()}
-        </p>
+        <p className="commentDate">{showRelativeDate(comment.date)}</p>
       </div>
     ) : (
-      <p className="commentDate">
-        {moment(comment.date, "YYYYMMDD").fromNow()}
-      </p>
+      <p className="commentDate">{showRelativeDate(comment.date)}</p>
     );
 
   return (

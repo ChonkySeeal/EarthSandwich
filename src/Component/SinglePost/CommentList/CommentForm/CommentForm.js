@@ -30,7 +30,11 @@ function CommentForm({ postId }) {
     const formData = new FormData(document.querySelector("#commentSubmitForm"));
 
     axios
-      .post(`http://localhost:8080/member/post/${postId}/comment`, formData, {})
+      .post(
+        `${process.env.REACT_APP_API_URL}:8080/member/post/${postId}/comment`,
+        formData,
+        {}
+      )
       .then((m) => {
         window.location.reload();
       })
@@ -39,7 +43,8 @@ function CommentForm({ postId }) {
           alert("Unauthorized user attempt");
           navigate("/");
         } else {
-          alert("fail to save comment");
+          console.log(r);
+          alert(r.response.data.message);
         }
       });
   };

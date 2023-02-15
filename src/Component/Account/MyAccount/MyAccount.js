@@ -7,37 +7,33 @@ import { useNavigate } from "react-router-dom";
 function MyAccount() {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({});
-  const [showPasswordForm, setShowPasswordForm] = useState(false);
+
   useEffect(() => {
     axios.defaults.withCredentials = true;
     axios
-      .get(`http://localhost:8080/member/account`)
+      .get(`${process.env.REACT_APP_API_URL}:8080/member/account`)
       .then((response) => {
         setUserInfo(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        alert(error.response.data.message);
       });
   }, []);
 
-  const handleSubmit = (e) => {
+  //show passwordForm logic
+  const resetPassword = (e) => {
     e.preventDefault();
     axios.defaults.withCredentials = true;
-    const formData = new FormData(document.querySelector("#submitForm"));
     axios
-      .put("http://localhost:8080/member/account", formData)
-      .then((r) => {
-        alert("password successfully changed");
+      .put(`${process.env.REACT_APP_API_URL}:8080/member/account`)
+      .then(() => {
+        alert("The password reset link has sent Pleas Check your Email!");
+        navigate("/");
       })
       .catch((r) => {
         alert(r.response.data.message);
       });
   };
-
-  //show passwordForm logic
-  function showForm() {
-    setShowPasswordForm(!showPasswordForm);
-  }
 
   //account delete logic
   const deleteAccount = () => {
@@ -46,7 +42,7 @@ function MyAccount() {
     ) {
       axios.defaults.withCredentials = true;
       axios
-        .delete(`http://localhost:8080/member/account`)
+        .delete(`${process.env.REACT_APP_API_URL}:8080/member/account`)
         .then(() => {
           alert("your account is permanently deleted");
           navigate("/");
@@ -56,7 +52,7 @@ function MyAccount() {
             alert("Unauthorized user attempt");
             navigate("/");
           } else {
-            console.log(r);
+            alert(r.response.data.message);
           }
         });
     }
@@ -64,7 +60,7 @@ function MyAccount() {
 
   return (
     <div className="myAccountInfoDiv">
-      <Form id="submitForm" onSubmit={handleSubmit}>
+      <Form id="submitForm">
         <Form.Group className="mb-3">
           <Form.Control
             type="text"
@@ -84,33 +80,11 @@ function MyAccount() {
         <Button
           className="mb-3 showPasswordFormBtn"
           variant="dark"
-          onClick={showForm}
+          onClick={resetPassword}
         >
           Change Password
         </Button>
-        {showPasswordForm && (
-          <div>
-            <Form.Group className="mb-3">
-              <Form.Control
-                name="oldpassword"
-                type="password"
-                placeholder="CurrentPassword"
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Control
-                name="newpassword"
-                type="password"
-                placeholder="NewPassword"
-                pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@#$%&]).{8,16}"
-                title="Password must contain at least one number, one uppercase, one lowercase, one special character (!@#$%&), and needs to be between 8-16 characters long"
-              />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-          </div>
-        )}
+
         <div className="mt-5 d-flex justify-content-end">
           <Button variant="danger" onClick={deleteAccount}>
             &#128128;Delete Account&#128128;

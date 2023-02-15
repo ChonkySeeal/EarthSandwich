@@ -45,7 +45,7 @@ function PostForm() {
     formData.append("linkedPost", postId ? postId : 0);
 
     axios
-      .post("http://localhost:8080/member/post", formData, {
+      .post(`${process.env.REACT_APP_API_URL}:8080/member/post`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -59,7 +59,7 @@ function PostForm() {
           alert("Unauthorized user attempt");
           navigate("/");
         } else {
-          alert("post fail");
+          alert(r.response.data.message);
         }
       });
   };
@@ -82,11 +82,13 @@ function PostForm() {
     );
   }
 
+  //set image and compress image
   const imageChanged = async (e) => {
     if (e.target.files && e.target.files[0]) {
       setImage(URL.createObjectURL(e.target.files[0]));
       const options = {
         maxSizeMB: 0.05,
+        maxWidthOrHeight: 800,
         useWebWorker: true,
         fileType: "image/jpeg",
       };
@@ -133,10 +135,14 @@ function PostForm() {
           <Form.Control type="file" onChange={imageChanged} required />
         </Form.Group>
         {previewImage}
-        <div>
+        <div className="d-flex">
           <Button className="postformbtn" variant="secondary" type="submit">
             Post
           </Button>
+          <p className="mx-3 postformFont">
+            When post is linked which means when earthsandwich is made with
+            another user the post cannot be deleted!!
+          </p>
         </div>
       </Form>
 

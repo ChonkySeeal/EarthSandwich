@@ -1,9 +1,9 @@
 .registerform {
-    width: 42vw;
+  max-width: 600px;
     min-width: 200px;
     margin: auto;
     margin-top: 20vh;
-    padding: 5%;
+    padding: 20px;
     border: lightgray solid 3px;
     border-radius: 2px;
   }

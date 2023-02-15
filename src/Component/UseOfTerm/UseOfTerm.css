@@ -1,0 +1,44 @@
+
+
+.useOfTermContainer {
+    max-width: 1200px;
+    margin:auto;
+    margin-top: 100px;
+    
+}
+
+.useOfTerm {
+    max-height: 600px;
+    overflow-y: scroll;
+    border: lightgray solid 3px;
+    border-radius: 2px;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.acceptPhrase {
+    font-family: 'Roboto', sans-serif;
+    color: rgba(143, 143, 143, 0.836);
+}
+
+@media only screen and (max-width: 600px) {
+    .useOfTerm {
+        max-height: 300px;
+        
+    }
+
+    .acceptPhrase {
+        font-size: 12px;
+    }
+  }
+
+.useOfTermButtonsContainer {
+    max-width: 200px;
+    margin:auto;
+    font-weight: bold;
+}
+
+.useOfTermButtonsContainer .btn {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}

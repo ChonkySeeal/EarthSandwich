@@ -3,9 +3,9 @@ import { Card, Button, Pagination } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
-import moment from "moment";
+import showRelativeDate from "../../Module/RelativeDate";
 
 function PostList() {
   const [postlists, setPostlists] = useState([]);
@@ -16,13 +16,13 @@ function PostList() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/board/postlist/${pageNumber}`)
+      .get(`${process.env.REACT_APP_API_URL}:8080/board/postlist/${pageNumber}`)
       .then((response) => {
         setPostlists(response.data.postLists);
         setTotalPageNumber(response.data.totalPageNumber);
       })
       .catch((e) => {
-        console.log(e);
+        alert(e.response.data.message);
       });
   }, [pageNumber]);
 
@@ -41,8 +41,11 @@ function PostList() {
 
   return (
     <div className="postListContainer">
-      <div className="flex-column flex-md-row d-flex flex-wrap" fluid="md">
-        {postlists.length > 0 &&
+      <div
+        className="flex-column flex-md-row d-flex align-items-center mb-5"
+        fluid="md"
+      >
+        {Array.isArray(postlists) &&
           postlists.map((post) => {
             if (post.linkedPost) {
               return (
@@ -60,7 +63,7 @@ function PostList() {
                         {post.title}
                       </Card.Title>
                       <Card.Title className="cardDate">
-                        {moment(post.date, "YYYYMMDD").fromNow() +
+                        {showRelativeDate(post.date) +
                           " by " +
                           `u/${post.writer}`}
                       </Card.Title>
@@ -76,7 +79,7 @@ function PostList() {
                     <Card.Body>
                       <Card.Title>{post.linkedPost.title}</Card.Title>
                       <Card.Title className="cardDate">
-                        {moment(post.linkedPost.date, "YYYYMMDD").fromNow() +
+                        {showRelativeDate(post.linkedPost.date) +
                           " by " +
                           `u/${post.linkedPost.writer}`}
                       </Card.Title>
@@ -114,7 +117,7 @@ function PostList() {
                         {post.title}
                       </Card.Title>
                       <Card.Title className="cardDate">
-                        {moment(post.date, "YYYYMMDD").fromNow()}
+                        {showRelativeDate(post.date)}
                       </Card.Title>
                       <Button
                         className="postListbtn"
@@ -127,8 +130,9 @@ function PostList() {
                   </Card>
                   <Card style={{ width: "18rem", margin: "auto" }}>
                     <Card.Body>
-                      <Card.Title>Preferred Coordinate</Card.Title>
+                      <Card.Title>Preferred Coordinate & Cities</Card.Title>
                     </Card.Body>
+
                     <MapContainer
                       className=" leaflet-container-postlist card-img-top"
                       center={coordinate}
@@ -137,6 +141,56 @@ function PostList() {
                       dragging={false}
                     >
                       <Marker icon={customBread} position={coordinate}></Marker>
+                      <Marker
+                        position={[
+                          post.cities[0].latitude / 100,
+                          post.cities[0].longitude / 100,
+                        ]}
+                      >
+                        <Popup>
+                          {`${post.cities[0].city}-${post.cities[0].country}`}
+                        </Popup>
+                      </Marker>
+                      <Marker
+                        position={[
+                          post.cities[1].latitude / 100,
+                          post.cities[1].longitude / 100,
+                        ]}
+                      >
+                        <Popup>
+                          {`${post.cities[1].city}-${post.cities[1].country}`}
+                        </Popup>
+                      </Marker>
+                      <Marker
+                        position={[
+                          post.cities[2].latitude / 100,
+                          post.cities[2].longitude / 100,
+                        ]}
+                      >
+                        <Popup>
+                          {`${post.cities[2].city}-${post.cities[2].country}`}
+                        </Popup>
+                      </Marker>
+                      <Marker
+                        position={[
+                          post.cities[3].latitude / 100,
+                          post.cities[3].longitude / 100,
+                        ]}
+                      >
+                        <Popup>
+                          {`${post.cities[3].city}-${post.cities[3].country}`}
+                        </Popup>
+                      </Marker>
+                      <Marker
+                        position={[
+                          post.cities[4].latitude / 100,
+                          post.cities[4].longitude / 100,
+                        ]}
+                      >
+                        <Popup>
+                          {`${post.cities[4].city}-${post.cities[4].country}`}
+                        </Popup>
+                      </Marker>
                       <TileLayer
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -148,7 +202,7 @@ function PostList() {
             }
           })}
       </div>
-      {postlists.length > 0 && (
+      {Array.isArray(postlists) && (
         <Pagination className="justify-content-center">
           <Pagination.First
             onClick={() => {

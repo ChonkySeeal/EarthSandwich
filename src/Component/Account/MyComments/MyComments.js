@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Pagination } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import moment from "moment";
+import showRelativeDate from "../../../Module/RelativeDate";
 
 function MyComments({ writer }) {
   const navigate = useNavigate();
@@ -16,14 +16,14 @@ function MyComments({ writer }) {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:8080/board/commentlist/user/${writer}/${pageNumber}`
+        `${process.env.REACT_APP_API_URL}:8080/board/commentlist/user/${writer}/${pageNumber}`
       )
       .then((response) => {
         setCommentlist(response.data.commentList);
         setTotalPageNumber(response.data.totalPageNumber);
       })
       .catch((e) => {
-        console.log(e);
+        alert(e.response.data.message);
       });
   }, [pageNumber, writer]);
 
@@ -42,10 +42,7 @@ function MyComments({ writer }) {
                 }}
               >
                 <p className="commentContent">{comment.content}</p>
-                <p>{`submitted ${moment(
-                  comment.date,
-                  "YYYYMMDD"
-                ).fromNow()}`}</p>
+                <p>{`submitted ${showRelativeDate(comment.date)}`}</p>
               </div>
             );
           })}

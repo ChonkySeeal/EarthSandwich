@@ -18,17 +18,17 @@ function RegisterForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/user/register", {
+      .post(`${process.env.REACT_APP_API_URL}:8080/user/register`, {
         email: inputs.email,
         password: inputs.password,
         username: inputs.username,
       })
       .then((message) => {
-        alert("registration complete!");
+        alert("Verification Email is sent!");
         navigate("/user/login");
       })
       .catch((e) => {
-        console.log(e);
+        alert(e.response.data.message);
       });
   };
 
@@ -63,8 +63,8 @@ function RegisterForm() {
         <Form.Control
           placeholder="Enter username"
           name="username"
-          pattern="^[a-zA-Z]{1}[a-zA-Z0-9_]{4,11}$"
-          title="username must start with letter and needs to be between 5-12 characters long"
+          pattern="^[a-zA-Z]{1}[a-zA-Z0-9_]{1,19}$"
+          title="username must start with letter and needs to be between 2-20 characters long"
           onChange={valueChanged}
           required
         />
