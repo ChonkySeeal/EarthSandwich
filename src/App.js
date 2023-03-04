@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { useState } from "react";
@@ -15,6 +16,7 @@ import UseOfTerm from "./Component/UseOfTerm/UseOfTerm";
 import EmailVerification from "./Component/EmailVerification/EmailVerification";
 import EmailConfirm from "./Component/EmailConfirm/EmailConfirm";
 import PasswordReset from "./Component/PasswordReset/PasswordReset";
+import Footer from "./Component/Footer/Footer";
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -48,6 +50,7 @@ function App() {
             <Route path="/board/edit/:postId" element={<EditPost />} />
           </Routes>
         </div>
+        <Footer />
       </div>
     </Router>
   );
