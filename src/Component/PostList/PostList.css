@@ -1,5 +1,5 @@
 .postListContainer {
-    max-width: 1200px;
+    max-width: 1000px;
     margin:auto;
     margin-top: 20vh;
   
@@ -12,10 +12,10 @@
   }
 
 .postContainer {
-    width:50%;
+
     min-width: 400px;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+
 
 }
 
@@ -35,7 +35,6 @@
 }
 
 .postListbtn {
-    font-family: 'Roboto', sans-serif;
     font-weight: bold;
   }
 

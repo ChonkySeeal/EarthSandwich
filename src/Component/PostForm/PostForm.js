@@ -95,6 +95,7 @@ function PostForm() {
 
       try {
         const compressImg = await imageCompression(e.target.files[0], options);
+        console.log(compressImg.size);
         setFile(compressImg);
       } catch (error) {
         alert("Upload image only");

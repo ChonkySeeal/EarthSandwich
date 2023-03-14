@@ -41,16 +41,13 @@ function PostList() {
 
   return (
     <div className="postListContainer">
-      <div
-        className="flex-column flex-md-row d-flex align-items-center mb-5"
-        fluid="md"
-      >
+      <div className="d-md-flex flex-wrap mb-5">
         {Array.isArray(postlists) &&
           postlists.map((post) => {
             if (post.linkedPost) {
               return (
                 <div
-                  className="postContainer"
+                  className="postContainer m-5"
                   key={`${post.id}${post.linkedPost.id}`}
                   onClick={() => postClickHandler(post.id)}
                 >
@@ -102,7 +99,7 @@ function PostList() {
               ];
 
               return (
-                <div className="postContainer" key={post.id}>
+                <div className="postContainer m-5" key={post.id}>
                   <Card
                     className="postCard"
                     style={{ width: "18rem", margin: "auto" }}

@@ -17,7 +17,7 @@
 
 
 .acceptPhrase {
-    font-family: 'Roboto', sans-serif;
+
     color: rgba(143, 143, 143, 0.836);
 }
 
@@ -39,6 +39,6 @@
 }
 
 .useOfTermButtonsContainer .btn {
-    font-family: 'Roboto', sans-serif;
+   
     font-weight: bold;
 }

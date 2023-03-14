@@ -7,3 +7,16 @@ body {
     background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
     --bs-body-font-family: 'Tilt Warp', cursive;
 }
+
+img {
+    max-width: 400px;
+    max-height: 400px;
+}
+
+
+@media (min-width: 768px) {
+    img {
+        max-width: 800px;
+        max-height: 800px;
+    }
+}
